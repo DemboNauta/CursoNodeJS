@@ -11,7 +11,14 @@ function findAvailablePort(desiredPort) {
                 resolve(port);
             });
         })
-        resolve(0)
+        
+        server.on('error', (err)=>{
+            if(err.code === 'EADDRINUSE'){
+                findAvailablePort(0).then(port => resolve(port));
+            }else{
+                reject(err);
+            }
+        });
     })
 }
 

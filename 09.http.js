@@ -1,4 +1,5 @@
 const http = require('node:http');
+const { findAvailablePort } = require('./10.free-port');
 
 const server = http.createServer((req, res)=>{
     console.log('request recibido');
@@ -6,6 +7,8 @@ const server = http.createServer((req, res)=>{
     res.end('Hola mundo');
 });
 
-server.listen(0, ()=>{
-    console.log(`Servidor escuchando en el puerto http://localhost:${server.address().port}`);
+findAvailablePort(22).then(port=>{
+    server.listen(port, ()=>{
+        console.log(`Servidor corriendo en http://localhost:${port}`);
+    });
 });
