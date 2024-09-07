@@ -1,0 +1,9 @@
+
+{
+  "scripts": {
+    "dev:3": "node --watch 3.express.js"
+  },
+  "dependencies": {
+    "express": "4.19.2"
+  }
+}
